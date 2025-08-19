@@ -104,18 +104,16 @@ services:
       start_period: 10s
 
   #инициализация
-  init_config:
+  init_setup:
     image: mongo:latest
-    container_name: init_config
+    container_name: init_setup
     depends_on:
-      - configSrv
-      - shard1
-      - shard2
+      - mongos_router
     volumes:
       - ./scripts:/scripts
     networks:
       - app-network
-    entrypoint: [ "sh", "/scripts/mongo-init.sh" ]
+    entrypoint: [ "sh", "/scripts/mongo-setup.sh" ]
 
   pymongo_api:
     container_name: pymongo_api
@@ -123,7 +121,9 @@ services:
       context: api_app
       dockerfile: Dockerfile
     depends_on:
-      init_config: { condition: service_completed_successfully }
+      init_setup:
+        condition:
+          service_completed_successfully
     ports:
       - 8080:8080
     environment:
