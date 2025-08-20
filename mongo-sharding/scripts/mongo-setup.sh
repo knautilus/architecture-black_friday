@@ -3,16 +3,16 @@
 echo Инициализация сервера конфигурации
 
 until mongosh --host configSrv:27017 --eval 'db.adminCommand("ping")' | grep 'ok'; do sleep 2; done 
-mongosh --host configSrv:27017 --eval '
+mongosh --host configSrv:27017 --eval "
 rs.initiate(
   {
-    _id : "config_server",
+    _id : 'config_server',
     configsvr: true,
     members: [
-      { _id : 0, host : "configSrv:27017" }
+      { _id : 0, host : 'configSrv:27017' }
     ]
   }
-);'
+);"
 
 echo Инициализация Shard 1
 
@@ -59,7 +59,6 @@ mongosh --host mongos_router:27020 --eval "
     {
       db.helloDoc.insertOne({age:i, name:'ly'+i});
     }
-    db.helloDoc.getShardDistribution()
     print('Total:', db.helloDoc.countDocuments())
 "
 

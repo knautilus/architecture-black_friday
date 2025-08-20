@@ -104,9 +104,9 @@ services:
       start_period: 10s
 
   #инициализация
-  init_setup:
+  mongo_setup:
     image: mongo:latest
-    container_name: init_setup
+    container_name: mongo_setup
     depends_on:
       - mongos_router
     volumes:
@@ -121,11 +121,14 @@ services:
       context: api_app
       dockerfile: Dockerfile
     depends_on:
-      init_setup:
+      mongo_setup:
         condition:
           service_completed_successfully
     ports:
       - 8080:8080
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.6
     environment:
       MONGODB_URL: "mongodb://mongos_router:27020"
       MONGODB_DATABASE_NAME: "somedb"
