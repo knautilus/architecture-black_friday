@@ -10,7 +10,7 @@ services:
       - "27017:27017"
     networks:
       app-network:
-        ipv4_address: 173.17.0.1
+        ipv4_address: 173.17.0.2
     volumes:
       - config-data:/data/db
     command:
@@ -36,7 +36,7 @@ services:
       - "27018:27018"
     networks:
       app-network:
-        ipv4_address: 173.17.0.2
+        ipv4_address: 173.17.0.3
     volumes:
       - shard1_r1-data:/data/db
     command:
@@ -62,7 +62,7 @@ services:
       - "27019:27019"
     networks:
       app-network:
-        ipv4_address: 173.17.0.3
+        ipv4_address: 173.17.0.4
     volumes:
       - shard1_r2-data:/data/db
     command:
@@ -88,7 +88,7 @@ services:
       - "27020:27020"
     networks:
       app-network:
-        ipv4_address: 173.17.0.4
+        ipv4_address: 173.17.0.5
     volumes:
       - shard1_r3-data:/data/db
     command:
@@ -114,7 +114,7 @@ services:
       - "27021:27021"
     networks:
       app-network:
-        ipv4_address: 173.17.0.5
+        ipv4_address: 173.17.0.6
     volumes:
       - shard2_r1-data:/data/db
     command:
@@ -140,7 +140,7 @@ services:
       - "27022:27022"
     networks:
       app-network:
-        ipv4_address: 173.17.0.6
+        ipv4_address: 173.17.0.7
     volumes:
       - shard2_r2-data:/data/db
     command:
@@ -166,7 +166,7 @@ services:
       - "27023:27023"
     networks:
       app-network:
-        ipv4_address: 173.17.0.7
+        ipv4_address: 173.17.0.8
     volumes:
       - shard2_r3-data:/data/db
     command:
@@ -192,7 +192,7 @@ services:
       - "27024:27024"
     networks:
       app-network:
-        ipv4_address: 173.17.0.8
+        ipv4_address: 173.17.0.9
     command:
       [
         "mongos",
@@ -233,7 +233,7 @@ services:
       - 8080:8080
     networks:
       app-network:
-        ipv4_address: 173.17.0.9
+        ipv4_address: 173.17.0.10
     environment:
       MONGODB_URL: "mongodb://mongos_router:27024"
       MONGODB_DATABASE_NAME: "somedb"

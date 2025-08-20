@@ -10,7 +10,7 @@ services:
       - "27017:27017"
     networks:
       app-network:
-        ipv4_address: 173.17.0.1
+        ipv4_address: 173.17.0.2
     volumes:
       - config-data:/data/db
     command:
@@ -36,7 +36,7 @@ services:
       - "27018:27018"
     networks:
       app-network:
-        ipv4_address: 173.17.0.2
+        ipv4_address: 173.17.0.3
     volumes:
       - shard1-data:/data/db
     command:
@@ -62,7 +62,7 @@ services:
       - "27021:27021"
     networks:
       app-network:
-        ipv4_address: 173.17.0.5
+        ipv4_address: 173.17.0.6
     volumes:
       - shard2-data:/data/db
     command:
@@ -85,10 +85,10 @@ services:
     container_name: mongos_router
     restart: always
     ports:
-      - "27022:27022"
+      - "27024:27024"
     networks:
       app-network:
-        ipv4_address: 173.17.0.8
+        ipv4_address: 173.17.0.9
     command:
       [
         "mongos",
@@ -96,7 +96,7 @@ services:
         "config_server/configSrv:27017",
         "--bind_ip_all",
         "--port",
-        "27022"
+        "27024"
       ]
     healthcheck:
       test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
@@ -129,7 +129,7 @@ services:
       - 8080:8080
     networks:
       app-network:
-        ipv4_address: 173.17.0.9
+        ipv4_address: 173.17.0.10
     environment:
       MONGODB_URL: "mongodb://mongos_router:27020"
       MONGODB_DATABASE_NAME: "somedb"
