@@ -27,7 +27,7 @@ services:
       interval: 5s
       start_period: 10s
 
-  #1-й шард 
+  #MongoDB шард 1
   shard1:
     image: mongo:latest
     container_name: shard1
@@ -53,7 +53,7 @@ services:
       interval: 5s
       start_period: 10s
 
-  #2-й шард 
+  #MongoDB шард 2
   shard2:
     image: mongo:latest
     container_name: shard2

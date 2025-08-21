@@ -23,6 +23,8 @@ docker compose up --build
 
 Откройте в браузере http://localhost:8080
 
+Получить документы: http://localhost:8080/helloDoc/users
+
 ## Доступные эндпоинты
 
 Список доступных эндпоинтов, swagger http://localhost:8080/docs
