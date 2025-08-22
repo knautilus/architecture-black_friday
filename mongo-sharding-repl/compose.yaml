@@ -211,6 +211,7 @@ services:
   mongo_setup:
     image: mongo:latest
     container_name: mongo_setup
+    depends_on:
       configSrv:
         condition: service_started
       mongos_router:
@@ -235,6 +236,7 @@ services:
 
   #Приложение
   pymongo_api:
+    image: kazhem/pymongo_api:1.0.0
     container_name: pymongo_api
     build: 
       context: api_app
