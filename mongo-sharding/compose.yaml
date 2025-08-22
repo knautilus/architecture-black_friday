@@ -108,7 +108,14 @@ services:
     image: mongo:latest
     container_name: mongo_setup
     depends_on:
-      - mongos_router
+      configSrv:
+        condition: service_started
+      mongos_router:
+        condition: service_started
+      shard1:
+        condition: service_started
+      shard2:
+        condition: service_started
     volumes:
       - ./scripts:/scripts
     networks:
@@ -123,8 +130,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       mongo_setup:
-        condition:
-          service_completed_successfully
+        condition: service_completed_successfully
     ports:
       - 8080:8080
     networks:

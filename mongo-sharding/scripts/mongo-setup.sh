@@ -2,7 +2,6 @@
 
 echo Инициализация сервера конфигурации
 
-until mongosh --host configSrv:27017 --eval 'db.adminCommand("ping")' | grep 'ok'; do sleep 2; done 
 mongosh --host configSrv:27017 --eval "
 rs.initiate(
   {
@@ -16,7 +15,6 @@ rs.initiate(
 
 echo Инициализация Shard 1
 
-until mongosh --host shard1:27018 --eval 'db.adminCommand("ping")' | grep 'ok'; do sleep 2; done
 mongosh --host shard1:27018 --eval "
     rs.initiate(
       {
@@ -30,7 +28,6 @@ mongosh --host shard1:27018 --eval "
 
 echo Инициализация Shard 2
 
-until mongosh --host shard2:27021 --eval 'db.adminCommand("ping")' | grep 'ok'; do sleep 2; done
 mongosh --host shard2:27021 --eval "
     rs.initiate(
       {
@@ -43,8 +40,6 @@ mongosh --host shard2:27021 --eval "
 "
 
 echo Инициализация роутера и заливка данных
-
-until mongosh --host mongos_router:27024 --eval 'db.adminCommand("ping")' | grep 'ok'; do sleep 2; done
 
 mongosh --host mongos_router:27024 --eval "
     sh.addShard('shard1/shard1:27018');
