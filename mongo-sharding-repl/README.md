@@ -2,7 +2,6 @@
 
 ## Как запустить
 
-Переходим в каталог sharding-repl-cache.
 Запускаем mongodb и приложение
 
 ```shell
@@ -23,8 +22,6 @@ docker compose up --build
 ### Если вы запускаете проект на локальной машине
 
 Откройте в браузере http://localhost:8080
-
-Получить документы: http://localhost:8080/helloDoc/users
 
 ## Доступные эндпоинты
 
